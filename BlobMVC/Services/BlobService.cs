@@ -20,13 +20,13 @@ namespace BlobMVC.Services
         public async Task<IEnumerable<string>> ListBlobAsync()
         {
             var containerClient = _blobServiceClient.GetBlobContainerClient("justacontainer");
-            var items = new List<string>();
+            var blobsList = new List<string>();
             await foreach (var blobItem in containerClient.GetBlobsAsync())
             {
-                items.Add(blobItem.Name);
+                blobsList.Add(blobItem.Name);
             }
             
-            return items;
+            return blobsList;
         }
     }
 }
