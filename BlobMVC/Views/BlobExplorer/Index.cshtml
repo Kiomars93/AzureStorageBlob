@@ -1,0 +1,11 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Pictures";
+}
+
+<h1>Picture list from my Azure Storage account container!</h1>
+
+@foreach (var blobItem in Model)
+{
+    <img src="@("https://bloby007.blob.core.windows.net/justacontainer/" + blobItem)" alt=image />
+}

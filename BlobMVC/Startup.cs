@@ -1,3 +1,5 @@
+using Azure.Storage.Blobs;
+using BlobMVC.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +26,9 @@ namespace BlobMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSingleton(x => new BlobServiceClient(Configuration.GetValue<string>("AZURE_STORAGE_CONNECTION_STRING")));
+
+            services.AddSingleton<IBlobService, BlobService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
